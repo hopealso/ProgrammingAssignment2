@@ -2,11 +2,11 @@
 ## If the inverse has already been calculated (& the matrix has not changed), cachesolve retrieves it from the cache.
 
 ## makeCacheMatrix produces a "special matrix" which is actually a list containing 4 functions.
-## This "special matrix" holds the cache of any previously calculated inverses.
+## This "special matrix" holds the cache of any previously calculated inverse.
 
 makeCacheMatrix <- function(x = matrix()) {
     ## 'x' is a matrix to be acted upon
-    
+
     cache <- NULL
     
     ## Create a set of 4 functions that this "special matrix" can run.
@@ -25,8 +25,8 @@ makeCacheMatrix <- function(x = matrix()) {
     ## It is run by cacheSolve which passes in the inverse in the form of a matrix.
     setinverse <- function(inverse) cache <<- inverse
     
-    ## 4. This function returns the current value of the cached inverse
-    ## When getinverse is NULL, it's a sign that the inverse yet hasn't been calculated.
+    ## 4. This function returns the current value of the cached inverse.
+    ## When getinverse returns NULL, it's a sign that the inverse yet hasn't been calculated.
     getinverse <- function() cache
 
     ## Pass back the "special matrix" with its 4 nifty functions.
@@ -58,7 +58,7 @@ cacheSolve <- function(x, ...) {
     data <- x$get()
 
     ## Calculate and return the inverse of the matrix.
-    result <- solve(data, ...)
+    result <- solve(data)
     x$setinverse(result)
     result
 }
